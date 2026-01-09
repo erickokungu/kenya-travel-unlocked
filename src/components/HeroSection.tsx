@@ -1,10 +1,22 @@
-import { Search, MapPin, Calendar, Users, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { Search, MapPin, Calendar } from 'lucide-react';
+import { useSearch } from '@/contexts/SearchContext';
 import heroImage from '@/assets/hero-safari.jpg';
 
 const HeroSection = () => {
-  const [destination, setDestination] = useState('');
-  const [date, setDate] = useState('');
+  const { searchQuery, setSearchQuery, searchDate, setSearchDate } = useSearch();
+
+  const handleSearch = () => {
+    // Scroll to destinations section
+    const destinationsSection = document.getElementById('destinations');
+    if (destinationsSection) {
+      destinationsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handlePopularClick = (place: string) => {
+    setSearchQuery(place);
+    handleSearch();
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -47,8 +59,9 @@ const HeroSection = () => {
                 <input
                   type="text"
                   placeholder="Where do you want to go?"
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                   className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
                 />
               </div>
@@ -59,8 +72,8 @@ const HeroSection = () => {
                 <input
                   type="text"
                   placeholder="When?"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={searchDate}
+                  onChange={(e) => setSearchDate(e.target.value)}
                   onFocus={(e) => (e.target.type = 'date')}
                   onBlur={(e) => (e.target.type = 'text')}
                   className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
@@ -68,7 +81,10 @@ const HeroSection = () => {
               </div>
 
               {/* Search Button */}
-              <button className="btn-gold flex items-center justify-center gap-2 py-4 lg:py-3 lg:px-8 rounded-xl lg:rounded-full">
+              <button 
+                onClick={handleSearch}
+                className="btn-gold flex items-center justify-center gap-2 py-4 lg:py-3 lg:px-8 rounded-xl lg:rounded-full"
+              >
                 <Search className="w-5 h-5" />
                 <span>Search</span>
               </button>
@@ -81,6 +97,7 @@ const HeroSection = () => {
             {['Maasai Mara', 'Diani Beach', 'Amboseli', 'Mt. Kenya'].map((place) => (
               <button
                 key={place}
+                onClick={() => handlePopularClick(place)}
                 className="text-sm text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full transition-colors"
               >
                 {place}
