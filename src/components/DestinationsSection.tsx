@@ -1,7 +1,8 @@
-import { ArrowRight, Star, Clock, MapPin, Loader2 } from 'lucide-react';
+import { ArrowRight, Star, Clock, MapPin, Loader2, Search, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { usePackages } from '@/hooks/usePackages';
 import { useFilters } from '@/contexts/FilterContext';
+import { useSearch } from '@/contexts/SearchContext';
 
 // Fallback images
 import maraImage from '@/assets/mara-lodge.jpg';
@@ -103,13 +104,25 @@ const DestinationCard = ({ slug, name, location, image, price, rating, duration,
 const DestinationsSection = () => {
   const { data: packages, isLoading, error } = usePackages();
   const { residentType, budgetType } = useFilters();
+  const { searchQuery, setSearchQuery } = useSearch();
 
   const isResident = residentType === 'resident';
 
-  // Filter packages based on budget
+  // Filter packages based on budget and search query
   const filteredPackages = packages?.filter((pkg) => {
     const price = isResident ? pkg.price_resident : pkg.price_non_resident;
     
+    // Search filter
+    const searchLower = searchQuery.toLowerCase().trim();
+    const matchesSearch = !searchLower || 
+      pkg.name.toLowerCase().includes(searchLower) ||
+      pkg.location.toLowerCase().includes(searchLower) ||
+      pkg.description.toLowerCase().includes(searchLower) ||
+      pkg.category?.toLowerCase().includes(searchLower);
+
+    if (!matchesSearch) return false;
+    
+    // Budget filter
     if (budgetType === 'budget') {
       return isResident ? price <= 30000 : price <= 400;
     } else if (budgetType === 'luxury') {
@@ -170,6 +183,27 @@ const DestinationsSection = () => {
             <ArrowRight className="w-5 h-5" />
           </a>
         </div>
+
+        {/* Search Results Indicator */}
+        {searchQuery && (
+          <div className="flex items-center gap-3 mb-8 p-4 bg-muted rounded-xl">
+            <Search className="w-5 h-5 text-primary" />
+            <span className="text-foreground">
+              {filteredPackages?.length === 0 ? (
+                <>No results found for "<strong>{searchQuery}</strong>"</>
+              ) : (
+                <>Showing {filteredPackages?.length} result{filteredPackages?.length !== 1 ? 's' : ''} for "<strong>{searchQuery}</strong>"</>
+              )}
+            </span>
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="ml-auto flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X className="w-4 h-4" />
+              Clear
+            </button>
+          </div>
+        )}
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
