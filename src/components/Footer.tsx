@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube, Shield, Award, CreditCard } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube, Shield, Award, CreditCard, Calendar, HelpCircle, Calculator } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
@@ -26,11 +26,11 @@ const Footer = () => {
     { label: 'Lake Naivasha Weekend Getaway', href: '/package/lake-naivasha' },
   ];
 
-  const experiences = [
-    { label: 'Bush Safaris', href: '/experience/bush' },
-    { label: 'Beach Holidays', href: '/experience/beach' },
-    { label: 'Adrenaline Adventures', href: '/experience/adrenaline' },
-    { label: 'Staycation Escapes', href: '/experience/staycation' },
+  const planYourSafari = [
+    { label: 'Wildlife Calendar', href: '/calendar', icon: Calendar },
+    { label: 'Safari Quiz', href: '/quiz', icon: HelpCircle },
+    { label: 'Instant Quote', href: '/quote', icon: Calculator },
+    { label: 'Destinations Guide', href: '/destinations', icon: MapPin },
   ];
 
   const quickLinks = [
@@ -73,7 +73,7 @@ const Footer = () => {
 
       {/* Main Footer */}
       <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-10">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-5">
@@ -151,6 +151,24 @@ const Footer = () => {
                     to={link.href} 
                     className="text-sm text-white/70 hover:text-primary transition-colors"
                   >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Plan Your Safari - NEW */}
+          <div>
+            <h4 className="font-display text-lg font-bold mb-5">Plan Your Safari</h4>
+            <ul className="space-y-3">
+              {planYourSafari.map((link) => (
+                <li key={link.label}>
+                  <Link 
+                    to={link.href} 
+                    className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition-colors"
+                  >
+                    <link.icon className="w-4 h-4" />
                     {link.label}
                   </Link>
                 </li>
