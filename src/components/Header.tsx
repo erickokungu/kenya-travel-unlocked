@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, Phone, ChevronDown, Calendar, HelpCircle, Calculator, MapPin } from 'lucide-react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +27,13 @@ const Header = () => {
     { label: 'Experiences', href: '#experiences' },
     { label: 'Itinerary', href: '#itinerary' },
     { label: 'Contact', href: '#contact' },
+  ];
+
+  const planYourTripLinks = [
+    { label: 'Wildlife Calendar', href: '/calendar', icon: Calendar, description: 'Best times to see wildlife' },
+    { label: 'Safari Quiz', href: '/quiz', icon: HelpCircle, description: 'Find your perfect safari' },
+    { label: 'Instant Quote', href: '/quote', icon: Calculator, description: 'Get pricing instantly' },
+    { label: 'Destinations Guide', href: '/destinations', icon: MapPin, description: 'Explore all destinations' },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -74,6 +87,36 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
+            
+            {/* Plan Your Trip Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button 
+                  className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
+                    isScrolled ? 'text-foreground' : 'text-white'
+                  }`}
+                >
+                  Plan Your Trip
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-64 bg-background border border-border shadow-lg z-50">
+                {planYourTripLinks.map((link) => (
+                  <DropdownMenuItem key={link.label} asChild>
+                    <Link 
+                      to={link.href}
+                      className="flex items-start gap-3 p-3 cursor-pointer"
+                    >
+                      <link.icon className="w-5 h-5 text-primary mt-0.5" />
+                      <div>
+                        <div className="font-medium">{link.label}</div>
+                        <div className="text-xs text-muted-foreground">{link.description}</div>
+                      </div>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* CTA Buttons */}
@@ -123,6 +166,23 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
+              
+              {/* Plan Your Trip Section - Mobile */}
+              <div className="py-3 border-b border-border/50">
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">Plan Your Trip</span>
+              </div>
+              {planYourTripLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="flex items-center gap-3 py-3 text-foreground font-medium hover:text-primary transition-colors border-b border-border/50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <link.icon className="w-4 h-4 text-primary" />
+                  {link.label}
+                </Link>
+              ))}
+              
               <a
                 href="tel:+254700000000"
                 className="flex items-center gap-2 py-3 text-foreground font-medium"
