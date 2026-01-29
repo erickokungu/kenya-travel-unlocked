@@ -128,7 +128,7 @@ const InstantQuote = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16 lg:pt-20">
       <SEO 
         title="Instant Safari Quote Calculator | Awili Safaris"
         description="Get real-time pricing for your Kenya safari. Customize your package with dates, guests, and add-ons to see your total instantly. No hidden fees."
