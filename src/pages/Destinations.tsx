@@ -16,7 +16,7 @@ const Destinations = () => {
     : destinationPreviews.filter(d => d.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16 lg:pt-20">
       <SEO 
         title="Kenya Safari Destinations | Awili Safaris Guides"
         description="Explore in-depth guides to Kenya's top safari destinations. Discover Maasai Mara, Amboseli, Samburu, Tsavo, Laikipia, and coastal paradises with insider tips."

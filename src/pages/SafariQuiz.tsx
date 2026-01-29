@@ -217,7 +217,7 @@ const SafariQuiz = () => {
     const summary = getAnswerSummary();
 
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-16 lg:pt-20">
         <SEO 
           title="Your Safari Matches | Awili Safaris Quiz Results"
           description="Based on your preferences, we've found the ideal Kenya safari experiences for you."
@@ -388,7 +388,7 @@ const SafariQuiz = () => {
 
   // Quiz View
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 pt-16 lg:pt-20">
       <SEO 
         title="Safari Quiz - Find Your Perfect Kenya Safari | Awili Safaris"
         description="Take our quick quiz to discover your ideal Kenya safari destination."

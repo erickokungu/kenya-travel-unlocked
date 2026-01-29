@@ -321,7 +321,7 @@ const WildlifeCalendar = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16 lg:pt-20">
       <SEO 
         title="Wildlife & Weather Calendar | Awili Safaris"
         description="Plan your Kenya safari with our month-by-month wildlife calendar. Discover the best times to see the Great Migration, Big Five, and seasonal wildlife events."
