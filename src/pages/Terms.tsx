@@ -159,8 +159,8 @@ const Terms = () => {
                   <p className="text-foreground font-medium">Awili Safaris</p>
                   <p className="text-muted-foreground mt-2">Westlands Business Center, Waiyaki Way</p>
                   <p className="text-muted-foreground">Nairobi, Kenya</p>
-                  <p className="text-muted-foreground mt-2">Email: info@awilisafaris.co.ke</p>
-                  <p className="text-muted-foreground">Phone: +254 712 345 678</p>
+                  <p className="text-muted-foreground mt-2">Email: erickokungu90@gmail.com</p>
+                  <p className="text-muted-foreground">Phone: +254 722 792 069</p>
                 </div>
               </section>
             </div>

@@ -370,7 +370,7 @@ const SafariQuiz = () => {
               Our safari specialists can create a completely custom itinerary based on your quiz results.
             </p>
             <a 
-              href="https://wa.me/254700000000" 
+              href="https://wa.me/254722792069"
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-background text-foreground font-semibold px-8 py-4 rounded-full hover:shadow-elevated transition-all"
