@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import awiliLogo from '@/assets/awili-safaris-logo.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -74,9 +75,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <span className="text-primary-foreground font-display font-bold text-xl">A</span>
-            </div>
+            <img 
+              src={awiliLogo} 
+              alt="Awili Safaris" 
+              className="w-12 h-12 rounded-full object-cover shadow-lg group-hover:scale-105 transition-transform"
+            />
             <div className="flex flex-col">
               <span className={`font-display text-xl font-bold leading-tight ${
                 isScrolled || !isHomePage ? 'text-foreground' : 'text-white'

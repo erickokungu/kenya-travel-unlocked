@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
+import awiliLogo from '@/assets/awili-safaris-logo.png';
 
 const emailSchema = z.string().trim().email('Please enter a valid email address').max(255);
 
@@ -182,9 +183,11 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-4 space-y-6">
             <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center shadow-gold group-hover:scale-105 transition-transform">
-                <span className="text-primary-foreground font-display font-bold text-2xl">A</span>
-              </div>
+              <img 
+                src={awiliLogo} 
+                alt="Awili Safaris" 
+                className="w-14 h-14 rounded-full object-cover shadow-gold group-hover:scale-105 transition-transform"
+              />
               <div>
                 <span className="font-display text-2xl font-bold text-white block">
                   Awili<span className="text-primary">Safaris</span>
