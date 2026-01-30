@@ -839,7 +839,7 @@ const DestinationGuide = () => {
           <div className="flex items-center gap-3 w-full sm:w-auto">
             {/* WhatsApp Button */}
             <a 
-              href={`https://wa.me/254700000000?text=Hi! I'm interested in visiting ${destination.name}. Can you help me plan my safari?`}
+              href={`https://wa.me/254722792069?text=Hi! I'm interested in visiting ${destination.name}. Can you help me plan my safari?`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-border bg-muted hover:bg-safari/10 hover:border-safari/30 transition-colors flex-1 sm:flex-none"
@@ -850,7 +850,7 @@ const DestinationGuide = () => {
             
             {/* Call Button */}
             <a 
-              href="tel:+254700000000" 
+              href="tel:+254722792069" 
               className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-border bg-muted hover:bg-muted/80 transition-colors sm:flex-none"
             >
               <Phone className="w-4 h-4 text-primary" />

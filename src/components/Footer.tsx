@@ -201,20 +201,11 @@ const Footer = () => {
             <div className="flex flex-wrap gap-3">
               <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 hover:bg-white/10 transition-colors">
                 <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-white">TRA Licensed</p>
-                  <p className="text-[10px] text-white/50">Tourism Authority</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 hover:bg-white/10 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                   <Award className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-white">KATO Member</p>
-                  <p className="text-[10px] text-white/50">Verified Operator</p>
+                  <p className="text-xs font-semibold text-white">EATGDA Member</p>
+                  <p className="text-[10px] text-white/50">Certified Tour Guides</p>
                 </div>
               </div>
             </div>
@@ -355,11 +346,8 @@ const Footer = () => {
                         <Phone className="w-4 h-4 text-primary" />
                       </div>
                       <div className="space-y-1">
-                        <a href="tel:+254712345678" className="text-sm text-white/60 hover:text-primary transition-colors block">
-                          +254 712 345 678
-                        </a>
-                        <a href="tel:+254798765432" className="text-sm text-white/60 hover:text-primary transition-colors block">
-                          +254 798 765 432
+                        <a href="tel:+254722792069" className="text-sm text-white/60 hover:text-primary transition-colors block">
+                          +254 722 792 069
                         </a>
                       </div>
                     </div>
@@ -370,8 +358,8 @@ const Footer = () => {
                         <Mail className="w-4 h-4 text-primary" />
                       </div>
                       <div className="space-y-1">
-                        <a href="mailto:info@awilisafaris.co.ke" className="text-sm text-white/60 hover:text-primary transition-colors block">
-                          info@awilisafaris.co.ke
+                        <a href="mailto:erickokungu90@gmail.com" className="text-sm text-white/60 hover:text-primary transition-colors block">
+                          erickokungu90@gmail.com
                         </a>
                       </div>
                     </div>
@@ -431,7 +419,7 @@ const Footer = () => {
           {/* License Info */}
           <div className="mt-4 pt-4 border-t border-white/5 text-center">
             <p className="text-xs text-white/30">
-              Licensed by Tourism Regulatory Authority (TRA) • Kenya Association of Tour Operators (KATO) Member
+              East Africa Tour Guides & Drivers Association (EATGDA) Member
             </p>
           </div>
         </div>

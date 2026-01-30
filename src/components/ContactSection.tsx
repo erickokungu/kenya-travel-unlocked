@@ -103,14 +103,14 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      content: '+254 700 000 000',
-      href: 'tel:+254700000000',
+      content: '+254 722 792 069',
+      href: 'tel:+254722792069',
     },
     {
       icon: Mail,
       title: 'Email Us',
-      content: 'info@awilisafaris.co.ke',
-      href: 'mailto:info@awilisafaris.co.ke',
+      content: 'erickokungu90@gmail.com',
+      href: 'mailto:erickokungu90@gmail.com',
     },
     {
       icon: Clock,
@@ -159,7 +159,7 @@ const ContactSection = () => {
                 Chat with us directly for quick responses about packages, availability, and custom itineraries.
               </p>
               <a
-                href="https://wa.me/254700000000?text=Hello!%20I%27m%20interested%20in%20booking%20a%20safari."
+                href="https://wa.me/254722792069?text=Hello!%20I%27m%20interested%20in%20booking%20a%20safari."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:brightness-110 transition-all"
