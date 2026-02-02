@@ -4,20 +4,17 @@ import { Users, User, Minus, Plus, Calculator, Info } from 'lucide-react';
 interface PricingCalculatorProps {
   residentPrice: number;
   nonResidentPrice: number;
-  singleSupplement: number;
   childDiscount: number;
 }
 
 const PricingCalculator = ({
   residentPrice,
   nonResidentPrice,
-  singleSupplement,
   childDiscount,
 }: PricingCalculatorProps) => {
   const [isResident, setIsResident] = useState(false);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
-  const [isSingleRoom, setIsSingleRoom] = useState(false);
 
   const basePrice = isResident ? residentPrice : nonResidentPrice;
 
@@ -25,18 +22,16 @@ const PricingCalculator = ({
     const adultTotal = adults * basePrice;
     const childPrice = basePrice * (1 - childDiscount / 100);
     const childTotal = children * childPrice;
-    const singleTotal = isSingleRoom ? singleSupplement : 0;
-    const grandTotal = adultTotal + childTotal + singleTotal;
+    const grandTotal = adultTotal + childTotal;
 
     return {
       adultTotal,
       childTotal,
       childPrice,
-      singleTotal,
       grandTotal,
       perPerson: grandTotal / (adults + children || 1),
     };
-  }, [adults, children, basePrice, childDiscount, singleSupplement, isSingleRoom]);
+  }, [adults, children, basePrice, childDiscount]);
 
   const adjustValue = (
     setter: React.Dispatch<React.SetStateAction<number>>,
@@ -153,30 +148,8 @@ const PricingCalculator = ({
         </div>
       </div>
 
-      {/* Single Room Supplement */}
-      <div className="flex items-center justify-between py-4 border-t border-b border-border mb-6">
-        <div>
-          <p className="font-medium text-foreground">Single Room</p>
-          <p className="text-sm text-muted-foreground">
-            +{formatPrice(singleSupplement)} supplement
-          </p>
-        </div>
-        <button
-          onClick={() => setIsSingleRoom(!isSingleRoom)}
-          className={`w-14 h-8 rounded-full transition-colors ${
-            isSingleRoom ? 'bg-primary' : 'bg-muted'
-          }`}
-        >
-          <div
-            className={`w-6 h-6 rounded-full bg-white shadow-md transition-transform ${
-              isSingleRoom ? 'translate-x-7' : 'translate-x-1'
-            }`}
-          />
-        </button>
-      </div>
-
       {/* Price Breakdown */}
-      <div className="space-y-3 mb-6">
+      <div className="space-y-3 mb-6 pt-4 border-t border-border">
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">
             {adults} Adult{adults > 1 ? 's' : ''} × {formatPrice(basePrice)}
@@ -189,12 +162,6 @@ const PricingCalculator = ({
               {children} Child{children > 1 ? 'ren' : ''} × {formatPrice(Math.round(totals.childPrice))}
             </span>
             <span className="font-medium">{formatPrice(Math.round(totals.childTotal))}</span>
-          </div>
-        )}
-        {isSingleRoom && (
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Single room supplement</span>
-            <span className="font-medium">{formatPrice(totals.singleTotal)}</span>
           </div>
         )}
       </div>
