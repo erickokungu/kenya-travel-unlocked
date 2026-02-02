@@ -62,7 +62,7 @@ const InstantQuote = () => {
   const [children, setChildren] = useState(0);
   const [travelDate, setTravelDate] = useState<Date | undefined>(addDays(new Date(), 14));
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
-  const [isSingleRoom, setIsSingleRoom] = useState(false);
+  
 
   const selectedPkg = packages?.find((p) => p.id === selectedPackage);
 
@@ -89,16 +89,14 @@ const InstantQuote = () => {
 
   const pricing = useMemo(() => {
     if (!selectedPkg) {
-      return { basePrice: 0, adultTotal: 0, childTotal: 0, addOnsTotal: 0, singleSupplement: 0, grandTotal: 0, perPerson: 0 };
+      return { basePrice: 0, adultTotal: 0, childTotal: 0, addOnsTotal: 0, grandTotal: 0, perPerson: 0 };
     }
 
     const basePrice = isResident ? selectedPkg.price_resident : selectedPkg.price_non_resident;
     const childDiscount = 0.3; // 30% off for children
-    const singleSupplementRate = 0.3; // 30% of base price
 
     const adultTotal = adults * basePrice;
     const childTotal = children * basePrice * (1 - childDiscount);
-    const singleSupplement = isSingleRoom ? basePrice * singleSupplementRate : 0;
 
     const addOnsTotal = selectedAddOns.reduce((total, addOnId) => {
       const addOn = addOns.find((a) => a.id === addOnId);
@@ -109,11 +107,11 @@ const InstantQuote = () => {
       return total;
     }, 0);
 
-    const grandTotal = adultTotal + childTotal + singleSupplement + addOnsTotal;
+    const grandTotal = adultTotal + childTotal + addOnsTotal;
     const perPerson = grandTotal / (adults + children || 1);
 
-    return { basePrice, adultTotal, childTotal, addOnsTotal, singleSupplement, grandTotal, perPerson };
-  }, [selectedPkg, isResident, adults, children, selectedAddOns, isSingleRoom]);
+    return { basePrice, adultTotal, childTotal, addOnsTotal, grandTotal, perPerson };
+  }, [selectedPkg, isResident, adults, children, selectedAddOns]);
 
   const formatPrice = (price: number) => {
     return isResident ? `KES ${price.toLocaleString()}` : `USD ${price.toLocaleString()}`;
@@ -317,27 +315,6 @@ const InstantQuote = () => {
                     </div>
                   </div>
 
-                  {/* Single Room */}
-                  <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
-                    <div>
-                      <p className="font-medium text-foreground">Single Room Supplement</p>
-                      <p className="text-sm text-muted-foreground">
-                        +{selectedPkg ? formatPrice(Math.round(pricing.basePrice * 0.3)) : '30%'}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setIsSingleRoom(!isSingleRoom)}
-                      className={`w-14 h-8 rounded-full transition-colors ${
-                        isSingleRoom ? 'bg-primary' : 'bg-border'
-                      }`}
-                    >
-                      <div
-                        className={`w-6 h-6 rounded-full bg-white shadow-md transition-transform ${
-                          isSingleRoom ? 'translate-x-7' : 'translate-x-1'
-                        }`}
-                      />
-                    </button>
-                  </div>
                 </div>
               </div>
 
@@ -430,12 +407,6 @@ const InstantQuote = () => {
                         </div>
                       )}
 
-                      {isSingleRoom && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Single Room</span>
-                          <span className="font-medium">{formatPrice(Math.round(pricing.singleSupplement))}</span>
-                        </div>
-                      )}
 
                       {selectedAddOns.length > 0 && (
                         <div className="flex justify-between text-sm">

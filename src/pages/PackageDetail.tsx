@@ -403,7 +403,6 @@ const PackageDetail = () => {
               <PricingCalculator
                 residentPrice={pkg.price_resident}
                 nonResidentPrice={pkg.price_non_resident}
-                singleSupplement={Math.round(pkg.price_resident * 0.05)}
                 childDiscount={30}
               />
               <BookingForm 
