@@ -646,13 +646,7 @@ const DestinationGuide = () => {
                         ))}
                       </div>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-4">{lodge.description}</p>
-                    
-                    {/* View Lodge CTA on Hover */}
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span>View Details</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <p className="text-muted-foreground text-sm">{lodge.description}</p>
                   </div>
                 );
               })}
